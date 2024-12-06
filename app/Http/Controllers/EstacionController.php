@@ -610,8 +610,11 @@ class EstacionController extends Controller
             ];
         });
 
+        // Ordenar por fecha descendente
+        $ordenado = $resultado->sortByDesc('fecha');
+
         return [
-            'CA-1' => $resultado->values()
+            'CA-1' => $ordenado->values() // Asegurarse de reindexar los valores
         ];
     }
 
