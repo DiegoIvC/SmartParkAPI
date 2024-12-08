@@ -680,5 +680,18 @@ class EstacionController extends Controller
         ]);
     }
 
+    public function obtenerUsuarios( $id)
+    {
+        $estacion = Estacion::find($id);
+        if (!$estacion) {
+            return response()->json(['message' => 'Estación no encontrada'], 404);
+        }
+
+        $usuario = collect($estacion->usuarios)->values();
+
+        return $usuario
+            ? response()->json($usuario)
+            : response()->json(['message' => 'Usuario no encontrado'], 404);
+    }
 
 }
